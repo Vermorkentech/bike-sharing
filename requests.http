@@ -1,0 +1,24 @@
+### Generate bikes
+# First, generate some bikes
+POST {{bike-sharing}}/bikes?bikes=10&bikeType=city
+Accept: application/json
+
+### List all
+# Show available bikes
+GET {{bike-sharing}}/bikes
+Accept: application/json
+
+### Checkout a Bike
+# Checkout an available bike
+PATCH {{bike-sharing}}/bikes/21346155-c5a0-400d-80f7-63844674d6e3/checkout/brunch
+Accept: application/json
+
+### Check on bike
+# Checkout an available bike
+GET {{bike-sharing}}/bikes/21346155-c5a0-400d-80f7-63844674d6e3
+Accept: application/json
+
+### Return a Bike
+# Checkout an available bike
+PATCH {{bike-sharing}}/bikes/21346155-c5a0-400d-80f7-63844674d6e3/return/Amsterdam
+Accept: application/json
