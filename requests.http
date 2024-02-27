@@ -10,15 +10,15 @@ Accept: application/json
 
 ### Checkout a Bike
 # Checkout an available bike
-PATCH {{bike-sharing}}/bikes/21346155-c5a0-400d-80f7-63844674d6e3/checkout/brunch
+PATCH {{bike-sharing}}/bikes/ef3bb1e1-6d25-4215-a5b4-1503afdc1ea9/checkout/brunch
 Accept: application/json
 
 ### Check on bike
-# Checkout an available bike
-GET {{bike-sharing}}/bikes/21346155-c5a0-400d-80f7-63844674d6e3
+# Attempt to checkout a bike that doesn't exist
+GET {{bike-sharing}}/bikes/ef3bb1e1-6d25-4215-a5b4-1503afdc1ea9
 Accept: application/json
 
 ### Return a Bike
-# Checkout an available bike
-PATCH {{bike-sharing}}/bikes/21346155-c5a0-400d-80f7-63844674d6e3/return/Amsterdam
+# return a bike
+PATCH {{bike-sharing}}/bikes/ef3bb1e1-6d25-4215-a5b4-1503afdc1ea9/return/Amsterdam
 Accept: application/json
