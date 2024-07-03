@@ -1,4 +1,4 @@
-package io.axoniq.bikesharing.query;
+package io.axoniq.bikesharing.query.bikestatus;
 
 import io.axoniq.bikesharing.api.messages.*;
 import org.axonframework.config.ProcessingGroup;

@@ -1,6 +1,7 @@
 package io.axoniq.bikesharing;
 
 import io.axoniq.bikesharing.api.messages.BikeStatus;
+import io.axoniq.bikesharing.query.customers.Customer;
 import org.axonframework.eventhandling.tokenstore.jpa.TokenEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -10,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-@EntityScan(basePackageClasses = {BikeStatus.class, TokenEntry.class})
+@EntityScan(basePackageClasses = {BikeStatus.class, TokenEntry.class, Customer.class})
 @SpringBootApplication
 @EnableScheduling
 public class BikeSharingApplication {
