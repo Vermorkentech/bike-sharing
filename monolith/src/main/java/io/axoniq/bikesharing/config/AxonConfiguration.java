@@ -1,5 +1,10 @@
 package io.axoniq.bikesharing.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.axoniq.dataprotection.api.FieldEncryptingSerializer;
+import io.axoniq.dataprotection.cryptoengine.CryptoEngine;
+import io.axoniq.dataprotection.cryptoengine.jpa.JpaCryptoEngine;
+import jakarta.persistence.EntityManagerFactory;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.CommandBusSpanFactory;
 import org.axonframework.commandhandling.DuplicateCommandHandlerResolver;
@@ -11,10 +16,13 @@ import org.axonframework.messaging.correlation.MessageOriginProvider;
 import org.axonframework.messaging.correlation.MultiCorrelationDataProvider;
 import org.axonframework.messaging.correlation.SimpleCorrelationDataProvider;
 import org.axonframework.messaging.interceptors.CorrelationDataInterceptor;
+import org.axonframework.serialization.Serializer;
+import org.axonframework.serialization.json.JacksonSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import java.util.Arrays;
 
@@ -47,4 +55,18 @@ public class AxonConfiguration {
         return commandBus;
     }
 
+    @Bean
+    public CryptoEngine cryptoEngine(EntityManagerFactory entityManagerFactory) {
+        return new JpaCryptoEngine(entityManagerFactory);
+    }
+
+    @Bean
+    @Primary
+    public Serializer generalSerializer(CryptoEngine cryptoEngine, ObjectMapper objectMapper) {
+        var jacksonSerializer = JacksonSerializer.builder()
+                .objectMapper(objectMapper)
+                .lenientDeserialization()
+                .build();
+        return new FieldEncryptingSerializer(cryptoEngine, jacksonSerializer, jacksonSerializer);
+    }
 }

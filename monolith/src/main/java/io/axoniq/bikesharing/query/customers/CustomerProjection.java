@@ -15,7 +15,7 @@ public class CustomerProjection {
 
     @EventHandler
     public void on(Gebeurtenis gebeurtenis) {
-        var customer = new Customer(gebeurtenis.gebeurtenisId(), gebeurtenis.naam(), gebeurtenis.vakgebied());
+        var customer = new Customer(gebeurtenis.getGebeurtenisId(), gebeurtenis.getNaam(), gebeurtenis.getVakgebied());
         customerRepository.save(customer);
     }
 }

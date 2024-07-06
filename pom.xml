@@ -70,6 +70,11 @@
 			<artifactId>console-framework-client-spring-boot-starter</artifactId>
 			<version>1.4.1</version>
 		</dependency>
+		<dependency>
+			<groupId>io.axoniq.dataprotection</groupId>
+			<artifactId>axon-data-protection-axon4</artifactId>
+			<version>4.5.1</version>
+		</dependency>
 	</dependencies>
 
 

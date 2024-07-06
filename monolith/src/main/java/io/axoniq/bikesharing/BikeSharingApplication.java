@@ -2,6 +2,7 @@ package io.axoniq.bikesharing;
 
 import io.axoniq.bikesharing.api.messages.BikeStatus;
 import io.axoniq.bikesharing.query.customers.Customer;
+import io.axoniq.dataprotection.cryptoengine.jpa.KeyEntity;
 import org.axonframework.eventhandling.tokenstore.jpa.TokenEntry;
 import org.axonframework.messaging.Message;
 import org.axonframework.messaging.correlation.CorrelationDataProvider;
@@ -19,7 +20,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Arrays;
 
-@EntityScan(basePackageClasses = {BikeStatus.class, TokenEntry.class, Customer.class})
+@EntityScan(basePackageClasses = {BikeStatus.class, TokenEntry.class, Customer.class, KeyEntity.class})
 @SpringBootApplication
 @EnableScheduling
 public class BikeSharingApplication {
