@@ -10,7 +10,7 @@ Accept: application/json
 
 ### Checkout a Bike
 # Checkout an available bike
-PATCH {{bike-sharing}}/bikes/be3a3329-98dc-4ce8-92e7-730b46bcc5b0/checkout/Christian
+PATCH {{bike-sharing}}/bikes/a1544080-07e7-4045-87ea-313afb9ed198/checkout/Christian
 Accept: application/json
 
 ### Check on bike
@@ -20,4 +20,8 @@ Accept: application/json
 ### Return a Bike
 # return a bike
 PATCH {{bike-sharing}}/bikes/be3a3329-98dc-4ce8-92e7-730b46bcc5b0/return/Apeldoorn
+Accept: application/json
+
+### Enriich the user profile
+PATCH {{bike-sharing}}/bikes/a1544080-07e7-4045-87ea-313afb9ed198/enrichProfile
 Accept: application/json

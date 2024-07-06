@@ -3,6 +3,7 @@ package io.axoniq.bikesharing.command;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
+import org.axonframework.modelling.command.AggregateMember;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import io.axoniq.bikesharing.api.messages.BikeCheckedoutEvent;
@@ -21,6 +22,9 @@ public class Bike {
 
     @AggregateIdentifier
     private String bikeId;
+
+    @AggregateMember
+    private UserProfile userProfile;
 
     private boolean isAvailable;
 
@@ -55,6 +59,7 @@ public class Bike {
     protected void on(BikeRegisteredEvent event) {
         this.bikeId = event.bikeId();
         this.isAvailable = true;
+        this.userProfile = new UserProfile();
     }
 
     @EventSourcingHandler

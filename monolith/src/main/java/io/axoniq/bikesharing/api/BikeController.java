@@ -1,29 +1,23 @@
 package io.axoniq.bikesharing.api;
 
+import io.axoniq.bikesharing.api.messages.*;
+import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.axonframework.messaging.MetaData;
+import org.axonframework.messaging.responsetypes.ResponseTypes;
+import org.axonframework.queryhandling.QueryGateway;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadLocalRandom;
 
-import io.axoniq.bikesharing.api.messages.*;
-import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.axonframework.messaging.responsetypes.ResponseTypes;
-import org.axonframework.queryhandling.QueryGateway;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
 
 @RestController
 @RequestMapping("/bikes")
 public class BikeController {
-    
+
 
     public static final String FIND_ALL_QUERY = "findAll";
     public static final String FIND_ONE_QUERY = "findOne";
@@ -43,7 +37,7 @@ public class BikeController {
         CompletableFuture<Void> all = CompletableFuture.completedFuture(null);
         for (int i = 0; i < bikeCount; i++) {
             all = CompletableFuture.allOf(all,
-                                          commandGateway.send(new RegisterBikeCommand(UUID.randomUUID().toString(), bikeType, randomLocation())));
+                    commandGateway.send(new RegisterBikeCommand(UUID.randomUUID().toString(), bikeType, randomLocation())));
         }
         return all;
     }
@@ -52,7 +46,7 @@ public class BikeController {
     public CompletableFuture<List<BikeStatus>> findAll() {
         return queryGateway.query(FIND_ALL_QUERY, null, ResponseTypes.multipleInstancesOf(BikeStatus.class));
     }
-    
+
     @GetMapping("/{bikeId}")
     public CompletableFuture<BikeStatus> findById(@PathVariable("bikeId") String bikeId) {
         var query = new FindBikeStatusByIdQuery(bikeId);
@@ -62,15 +56,21 @@ public class BikeController {
 
     @PatchMapping("/{bikeId}/checkout/{borrower-name}")
     public CompletableFuture<Void> checkoutBike(@PathVariable("bikeId") String bikeId,
-                                                    @PathVariable("borrower-name") String borrowerName) {
+                                                @PathVariable("borrower-name") String borrowerName) {
         return this.commandGateway.send(new CheckoutBikeCommand(bikeId, borrowerName));
     }
 
 
     @PatchMapping("/{bikeId}/return/{location-name}")
     public CompletableFuture<Void> returnBike(@PathVariable("bikeId") String bikeId,
-                                                @PathVariable("location-name") String locationName) {
+                                              @PathVariable("location-name") String locationName) {
         return this.commandGateway.send(new ReturnBikeCommand(bikeId, locationName));
+    }
+
+    @PatchMapping("/{bikeId}/enrichProfile")
+    public CompletableFuture<Void> enrichProfile(@PathVariable("bikeId") String bikeId) {
+        return this.commandGateway.send(new EnrichProfileCommand(bikeId, UUID.randomUUID(), "Jan Janssen", Vakgebied.ONTWIKKELAAR),
+                MetaData.with("source", "BikeController"));
     }
 
     private String randomLocation() {
