@@ -10,13 +10,12 @@ import org.axonframework.serialization.upcasting.event.SingleEventUpcaster;
 public class GebeurtenisUpcaster0_to_1 extends SingleEventUpcaster {
 
     private static final String EVENT_TYPE = "io.axoniq.bikesharing.api.messages.Gebeurtenis";
-    private static final String FROM_REVISION = null;
     private static final String TO_REVISION = "1";
 
     @Override
     protected boolean canUpcast(IntermediateEventRepresentation intermediateRepresentation) {
         return intermediateRepresentation.getType().getName().equals(EVENT_TYPE)
-                && intermediateRepresentation.getType().getRevision().equals(FROM_REVISION);
+                && intermediateRepresentation.getType().getRevision() == null;
     }
 
     @Override
