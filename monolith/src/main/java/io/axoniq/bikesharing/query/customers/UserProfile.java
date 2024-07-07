@@ -7,16 +7,16 @@ import jakarta.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class Customer {
+public class UserProfile {
 
     @Id
-    private UUID customerId;
+    private UUID userId;
     private String naam;
     private Vakgebied vakgebied;
 
-    public Customer() {}
-    public Customer(UUID customerId, String naam, Vakgebied vakgebied) {
-        this.customerId = customerId;
+    public UserProfile() {}
+    public UserProfile(UUID userId, String naam, Vakgebied vakgebied) {
+        this.userId = userId;
         this.naam = naam;
         this.vakgebied = vakgebied;
     }

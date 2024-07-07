@@ -10,18 +10,22 @@ Accept: application/json
 
 ### Checkout a Bike
 # Checkout an available bike
-PATCH {{bike-sharing}}/bikes/a1544080-07e7-4045-87ea-313afb9ed198/checkout/Christian
+PATCH {{bike-sharing}}/bikes/dd91a338-891d-4b1b-be5b-aa3597880789/checkout/Christian
 Accept: application/json
 
 ### Check on bike
-GET {{bike-sharing}}/bikes/be3a3329-98dc-4ce8-92e7-730b46bcc5b0
+GET {{bike-sharing}}/bikes/dd91a338-891d-4b1b-be5b-aa3597880789
 Accept: application/json
 
 ### Return a Bike
 # return a bike
-PATCH {{bike-sharing}}/bikes/be3a3329-98dc-4ce8-92e7-730b46bcc5b0/return/Apeldoorn
+PATCH {{bike-sharing}}/bikes/dd91a338-891d-4b1b-be5b-aa3597880789/return/Amsterdam
 Accept: application/json
 
-### Enriich the user profile
-PATCH {{bike-sharing}}/bikes/a1544080-07e7-4045-87ea-313afb9ed198/enrichProfile
+### Enrich the user profile
+PATCH {{bike-sharing}}/bikes/dd91a338-891d-4b1b-be5b-aa3597880789/enrichProfile
+Accept: application/json
+
+### Reset an event processor
+POST {{bike-sharing}}/ops/eventProcessor/BikeStatus/reset
 Accept: application/json
