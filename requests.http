@@ -27,5 +27,9 @@ PATCH {{bike-sharing}}/bikes/dd91a338-891d-4b1b-be5b-aa3597880789/enrichProfile
 Accept: application/json
 
 ### Reset an event processor
-POST {{bike-sharing}}/ops/eventProcessor/BikeStatus/reset
+POST {{bike-sharing}}/ops/eventProcessor/UserProfile/reset
+Accept: application/json
+
+### Reset an event processor
+DELETE {{bike-sharing}}/ops/gdpr/delete/8163713a-defd-4607-8416-c6a2f16ead96
 Accept: application/json

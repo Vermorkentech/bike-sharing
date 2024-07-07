@@ -1,13 +1,10 @@
 package io.axoniq.bikesharing.api;
 
+import io.axoniq.dataprotection.cryptoengine.CryptoEngine;
 import org.axonframework.config.EventProcessingConfiguration;
 import org.axonframework.eventhandling.StreamingEventProcessor;
-import org.axonframework.eventhandling.TrackingEventProcessor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -16,9 +13,11 @@ import java.util.Optional;
 public class ManagementEndpoint {
 
     private final EventProcessingConfiguration eventProcessingConfiguration;
+    private final CryptoEngine cryptoEngine;
 
-    public ManagementEndpoint(EventProcessingConfiguration eventProcessingConfiguration) {
+    public ManagementEndpoint(EventProcessingConfiguration eventProcessingConfiguration, CryptoEngine cryptoEngine) {
         this.eventProcessingConfiguration = eventProcessingConfiguration;
+        this.cryptoEngine = cryptoEngine;
     }
 
     @PostMapping("/eventProcessor/{processorName}/reset")
@@ -41,5 +40,11 @@ public class ManagementEndpoint {
                             processorName
                     ));
         }
+    }
+
+    @DeleteMapping("/gdpr/delete/{key}")
+    public ResponseEntity<Void> deleteKey(@PathVariable String key) {
+        cryptoEngine.deleteKey(key);
+        return ResponseEntity.ok().build();
     }
 }
