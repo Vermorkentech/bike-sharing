@@ -3,6 +3,7 @@ package io.axoniq.bikesharing.query.bikestatus;
 import io.axoniq.bikesharing.api.messages.*;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.eventhandling.ResetHandler;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Component;
 
@@ -50,5 +51,9 @@ public class BikeStatusProjection {
         return bikeSummaryRepository.findById(query.bikeId()).orElse(null);
     }
 
+    @ResetHandler
+    public void reset() {
+        bikeSummaryRepository.deleteAll();
+    }
 
 }
