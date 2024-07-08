@@ -1,6 +1,7 @@
 package io.axoniq.bikesharing.query.customers;
 
 import io.axoniq.bikesharing.api.messages.Gebeurtenis;
+import io.axoniq.bikesharing.api.messages.SensitiveEvent;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.ResetHandler;
@@ -19,6 +20,15 @@ public class UserProfileProjection {
     @EventHandler
     public void on(Gebeurtenis gebeurtenis) {
         userProfileRepository.save(new UserProfile(gebeurtenis.getGebeurtenisId(), gebeurtenis.getNaam(), gebeurtenis.getVakgebied()));
+    }
+
+    @EventHandler
+    public void on(SensitiveEvent event) {
+        userProfileRepository.findById(event.getGebeurtenisId())
+                .ifPresent(userProfile -> {
+                    userProfile.setBsn(event.getBsn());
+                    userProfileRepository.save(userProfile);
+                });
     }
 
     @ResetHandler

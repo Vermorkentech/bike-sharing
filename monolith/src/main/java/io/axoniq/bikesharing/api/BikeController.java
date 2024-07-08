@@ -69,7 +69,7 @@ public class BikeController {
 
     @PatchMapping("/{bikeId}/enrichProfile")
     public CompletableFuture<Void> enrichProfile(@PathVariable("bikeId") String bikeId) {
-        return this.commandGateway.send(new EnrichProfileCommand(bikeId, UUID.randomUUID(), "Jan Janssen", Vakgebied.ONTWIKKELAAR),
+        return this.commandGateway.send(new EnrichProfileCommand(bikeId, UUID.randomUUID(), "Jan Janssen", Vakgebied.ONTWIKKELAAR, "12345678"),
                 MetaData.with("source", "BikeController"));
     }
 

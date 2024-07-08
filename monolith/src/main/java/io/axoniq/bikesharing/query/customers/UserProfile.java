@@ -13,11 +13,16 @@ public class UserProfile {
     private UUID userId;
     private String naam;
     private Vakgebied vakgebied;
+    private String bsn;
 
     public UserProfile() {}
     public UserProfile(UUID userId, String naam, Vakgebied vakgebied) {
         this.userId = userId;
         this.naam = naam;
         this.vakgebied = vakgebied;
+    }
+
+    public void setBsn(String bsn) {
+        this.bsn = bsn;
     }
 }
