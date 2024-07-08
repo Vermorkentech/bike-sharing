@@ -18,7 +18,6 @@ import org.axonframework.messaging.correlation.SimpleCorrelationDataProvider;
 import org.axonframework.messaging.interceptors.CorrelationDataInterceptor;
 import org.axonframework.serialization.Serializer;
 import org.axonframework.serialization.json.JacksonSerializer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +32,7 @@ public class AxonConfiguration {
     public CorrelationDataProvider correlationDataProvider() {
         return new MultiCorrelationDataProvider<Message<?>>(
                 Arrays.asList(
-                        new SimpleCorrelationDataProvider("source", "intercepted"),
+                        new SimpleCorrelationDataProvider("source", "intercepted", "randomID"),
                         new MessageOriginProvider()
                 )
         );
