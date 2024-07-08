@@ -14,6 +14,7 @@ public class BikeStatus {
     private String location;
     private String checkedOutBy;
     private Availability status;
+    private Integer timesUsed;
 
     public BikeStatus() {
     }
@@ -23,6 +24,7 @@ public class BikeStatus {
         this.bikeType = bikeType;
         this.location = location;
         this.status = Availability.AVAILABLE;
+        this.timesUsed = 0;
     }
 
     public String getBikeId() {
@@ -50,6 +52,10 @@ public class BikeStatus {
     public void checkedOutBy(String checkedOutBy) {
         this.checkedOutBy = checkedOutBy;
         this.status = Availability.NOT_AVAILABLE;
+    }
+
+    public void registerUsage() {
+        timesUsed++;
     }
 
     public Availability getStatus() {

@@ -28,6 +28,7 @@ public class BikeStatusProjection {
         bikeSummaryRepository.findById(event.bikeId())
                             .map(bs -> {
                                 bs.checkedOutBy(event.renter());
+                                bs.registerUsage();
                                 return bs;
                             });
     }
