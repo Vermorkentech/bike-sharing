@@ -1,14 +1,20 @@
 services:
-  axonserver:
-    image: 'axoniq/axonserver:latest'
-    environment:
-      - 'AXONIQ_AXONSERVER_STANDALONE=TRUE'
-    ports:
-      - '8024:8024'
-      - '8124:8124'
+#  axonserver:
+#    image: 'axoniq/axonserver:latest'
+#    environment:
+#      - 'AXONIQ_AXONSERVER_STANDALONE=TRUE'
+#    ports:
+#      - '8024:8024'
+#      - '8124:8124'
   postgres:
     image: postgres
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=superSecret
+  vault:
+    image: hashicorp/vault
+    ports:
+      - '8200:8200'
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=localVaultToken
