@@ -18,7 +18,7 @@ public class UserProfile {
     @CommandHandler
     public void handle(EnrichProfileCommand command) {
         apply(
-                new Gebeurtenis(command.userId(), command.naam(), command.vakgebied()),
+                new Gebeurtenis(command.userId(), command.voornaam(), command.achternaam(), command.beroep()),
                 MetaData.with("randomID", UUID.randomUUID())
         );
         apply(new SensitiveEvent(gebeurtenisId, command.bsn()));

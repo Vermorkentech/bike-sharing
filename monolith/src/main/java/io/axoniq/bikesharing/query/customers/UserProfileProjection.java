@@ -19,7 +19,12 @@ public class UserProfileProjection {
 
     @EventHandler
     public void on(Gebeurtenis gebeurtenis) {
-        userProfileRepository.save(new UserProfile(gebeurtenis.getGebeurtenisId(), gebeurtenis.getNaam(), gebeurtenis.getVakgebied()));
+        userProfileRepository.save(
+                new UserProfile(gebeurtenis.getGebeurtenisId(),
+                        gebeurtenis.getVoornaam() + " " + gebeurtenis.getAchternaam(),
+                        gebeurtenis.getBeroep()
+                )
+        );
     }
 
     @EventHandler

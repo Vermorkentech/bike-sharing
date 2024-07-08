@@ -6,7 +6,9 @@ import com.fasterxml.jackson.databind.node.TextNode;
 import org.axonframework.serialization.SimpleSerializedType;
 import org.axonframework.serialization.upcasting.event.IntermediateEventRepresentation;
 import org.axonframework.serialization.upcasting.event.SingleEventUpcaster;
+import org.springframework.stereotype.Component;
 
+@Component
 public class GebeurtenisUpcaster0_to_1 extends SingleEventUpcaster {
 
     private static final String EVENT_TYPE = "io.axoniq.bikesharing.api.messages.Gebeurtenis";

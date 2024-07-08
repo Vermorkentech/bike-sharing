@@ -1,6 +1,6 @@
 package io.axoniq.bikesharing.api.messages;
 
-public enum Vakgebied {
+public enum Beroep {
     ONTWIKKELAAR,
     ANALIST,
     PROJECTLEIDER;

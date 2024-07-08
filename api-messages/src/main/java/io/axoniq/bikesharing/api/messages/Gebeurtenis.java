@@ -1,27 +1,36 @@
 package io.axoniq.bikesharing.api.messages;
 
+import org.axonframework.serialization.Revision;
+
 import java.util.UUID;
 
+@Revision("1")
 public class Gebeurtenis {
     private UUID gebeurtenisId;
-    private String naam; // Bestaande uit "voornaam" + " " + "achternaam"
-    private Vakgebied vakgebied;
+    private String voornaam;
+    private String achternaam;
+    private Beroep beroep;
 
-    public Gebeurtenis(UUID gebeurtenisId, String naam, Vakgebied vakgebied) {
+    public Gebeurtenis(UUID gebeurtenisId, String voornaam, String achternaam, Beroep beroep) {
         this.gebeurtenisId = gebeurtenisId;
-        this.naam = naam;
-        this.vakgebied = vakgebied;
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+        this.beroep = beroep;
     }
 
     public UUID getGebeurtenisId() {
         return gebeurtenisId;
     }
 
-    public String getNaam() {
-        return naam;
+    public String getVoornaam() {
+        return voornaam;
     }
 
-    public Vakgebied getVakgebied() {
-        return vakgebied;
+    public String getAchternaam() {
+        return achternaam;
+    }
+
+    public Beroep getBeroep() {
+        return beroep;
     }
 }

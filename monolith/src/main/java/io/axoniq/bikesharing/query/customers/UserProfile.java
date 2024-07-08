@@ -1,6 +1,6 @@
 package io.axoniq.bikesharing.query.customers;
 
-import io.axoniq.bikesharing.api.messages.Vakgebied;
+import io.axoniq.bikesharing.api.messages.Beroep;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -12,14 +12,14 @@ public class UserProfile {
     @Id
     private UUID userId;
     private String naam;
-    private Vakgebied vakgebied;
+    private Beroep beroep;
     private String bsn;
 
     public UserProfile() {}
-    public UserProfile(UUID userId, String naam, Vakgebied vakgebied) {
+    public UserProfile(UUID userId, String naam, Beroep beroep) {
         this.userId = userId;
         this.naam = naam;
-        this.vakgebied = vakgebied;
+        this.beroep = beroep;
     }
 
     public void setBsn(String bsn) {
