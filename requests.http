@@ -23,13 +23,17 @@ PATCH {{bike-sharing}}/bikes/dd91a338-891d-4b1b-be5b-aa3597880789/return/Amsterd
 Accept: application/json
 
 ### Enrich the user profile
-PATCH {{bike-sharing}}/bikes/dd91a338-891d-4b1b-be5b-aa3597880789/enrichProfile
+PATCH {{bike-sharing}}/bikes/a4b67eb5-a8d5-4306-b0db-22fe06c68bd8/enrichProfile
 Accept: application/json
 
 ### Reset an event processor
-POST {{bike-sharing}}/ops/eventProcessor/UserProfile/reset
+POST {{bike-sharing}}/ops/eventProcessor/BikeStatus/reset
+Accept: application/json
+
+### Reset an event processor from a specific date
+POST {{bike-sharing}}/ops/eventProcessor/BikeStatus/reset?resetToDate=2024-07-09T09:43:56.898Z
 Accept: application/json
 
 ### Reset an event processor
-DELETE {{bike-sharing}}/ops/gdpr/delete/8163713a-defd-4607-8416-c6a2f16ead96
+DELETE {{bike-sharing}}/ops/gdpr/delete/f097aab7-3428-4bd4-8bc1-9f64b3f9478d
 Accept: application/json
